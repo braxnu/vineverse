@@ -6,11 +6,8 @@
   "scripts": {
     "lint": "standard",
     "test": "ava",
-    "build": "mkdir -p dist && npm run build:client && npm run build:server && npm run build:assets",
-    "build:client": "webpack && cp -fv src/client/index.html dist/assets/index.html",
-    "build:server": "babel src/server --out-dir dist/server",
-    "build:assets": "cp -fvr src/assets dist/assets",
-    "watch": "watch 'npm run build:client' src/client",
+    "build": "gulp",
+    "watch": "watch gulp src/client",
     "start": "node dist/server"
   },
   "keywords": [
@@ -28,9 +25,13 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "d3": "^4.10.2",
+    "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-strip-comments": "^2.5.1",
     "standard": "^10.0.3",
     "topojson": "^3.0.2",
     "watch": "^1.0.2",
-    "webpack": "^3.5.6"
+    "webpack": "^3.5.6",
+    "webpack-stream": "^4.0.0"
   }
 }
