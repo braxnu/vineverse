@@ -6,10 +6,11 @@
   "scripts": {
     "lint": "standard",
     "test": "ava",
-    "build": "mkdir -p dist && npm run build:client && npm run build:server",
-    "build:client": "webpack && cp -fv src/client/index.html dist/client/index.html",
+    "build": "mkdir -p dist && npm run build:client && npm run build:server && npm run build:assets",
+    "build:client": "webpack && cp -fv src/client/index.html dist/assets/index.html",
     "build:server": "babel src/server --out-dir dist/server",
-    "watch": "watch 'npm run test && npm run build:client' src/client",
+    "build:assets": "cp -fvr src/assets dist/assets",
+    "watch": "watch 'npm run build:client' src/client",
     "start": "node dist/server"
   },
   "keywords": [
@@ -28,6 +29,7 @@
     "babel-preset-env": "^1.6.0",
     "d3": "^4.10.2",
     "standard": "^10.0.3",
+    "topojson": "^3.0.2",
     "watch": "^1.0.2",
     "webpack": "^3.5.6"
   }
