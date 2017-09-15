@@ -2,17 +2,17 @@ import * as d3 from 'd3'
 import { feature as topojsonFeature } from 'topojson'
 
 const canvas = d3.select('#globe').append('canvas')
-const size = 800
+const width = document.documentElement.clientWidth
+const height = document.documentElement.clientHeight
 
-canvas.attr('style', 'width: 100vw;')
-canvas.attr('width', size)
-canvas.attr('height', size)
+canvas.attr('width', width)
+canvas.attr('height', height)
 
 const context = canvas.node().getContext('2d')
 
 const projection = d3.geoOrthographic()
-  .scale(size / 2.1)
-  .translate([size / 2, size / 2])
+  .scale(Math.min(width, height) / 2.1)
+  .translate([width / 2, height / 2])
   .clipAngle(90)
 
 const path = d3.geoPath()
@@ -28,8 +28,8 @@ d3.json('/world-110m.json', (err, data) => {
   d3.timer(() => {
     const dt = Date.now() - t0
 
-    projection.rotate([velocity * dt + origin[0], origin[1]])
-    context.clearRect(0, 0, size, size)
+    // projection.rotate([velocity * dt + origin[0], origin[1]])
+    context.clearRect(0, 0, width, height)
     context.beginPath()
     path(land)
     context.lineWidth = 2
