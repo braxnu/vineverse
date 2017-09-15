@@ -24,9 +24,14 @@ gulp.task('assets', () => {
 })
 
 gulp.task('server', () => {
-  return gulp.src('src/server/**/*.js')
-    .pipe(babel(babelConfig))
-    .pipe(gulp.dest('dist/server'))
+  return gulp.src([
+    'src/server/**/*.js',
+    'src/shared/**/*.js'
+  ], {
+    base: 'src'
+  })
+  .pipe(babel(babelConfig))
+  .pipe(gulp.dest('dist'))
 })
 
 gulp.task('default', gulp.parallel('js', 'assets', 'server', done => done()))

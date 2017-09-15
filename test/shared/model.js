@@ -15,6 +15,7 @@ test('create method creates a record', t => {
   const item = {}
 
   model.create(item)
+
   t.is(model.list()[0], item)
 })
 
@@ -23,11 +24,9 @@ test('new instance starts with empty list', t => {
 })
 
 test('created records are added to the collection', t => {
-  const item = {}
-  const item2 = {}
+  model.create({})
+  model.create({})
 
-  model.create(item)
-  model.create(item2)
   t.is(model.list().length, 2)
 })
 
