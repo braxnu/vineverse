@@ -4,7 +4,8 @@ const webpackStream = require('webpack-stream')
 const webpackConfig = require('./webpack.config.js')
 const strip = require('gulp-strip-comments')
 const babel = require('gulp-babel')
-const babelConfig = require('./.babelrc')
+const jsonfile = require('jsonfile')
+const babelConfig = jsonfile.readFileSync('./.babelrc')
 
 gulp.task('js', () => {
   return gulp.src([
