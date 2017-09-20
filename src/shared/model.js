@@ -1,5 +1,6 @@
 export default () => {
   const collection = []
+  let id = 1
 
   return {
     list: filter => {
@@ -12,6 +13,9 @@ export default () => {
       })
     },
 
-    create: record => collection.push(record)
+    create: record => {
+      record.id = id++
+      collection.push(record)
+    }
   }
 }

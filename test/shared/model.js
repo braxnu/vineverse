@@ -41,3 +41,9 @@ test('list method uses params to filter records', t => {
   t.is(model.list({color: 'yellow'}).length, 1)
   t.is(model.list({color: 'blue'}).length, 0)
 })
+
+test('assigns unique id to every created record', t => {
+  model.create({})
+
+  t.is(model.list()[0].id, 1)
+})
