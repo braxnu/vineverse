@@ -19,6 +19,8 @@
   "author": "Karol Baczewski <braxnu@gmail.com>",
   "license": "UNLICENSED",
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4"
   },
@@ -35,6 +37,11 @@
     "gulp-babel": "^7.0.0",
     "gulp-strip-comments": "^2.5.1",
     "jsonfile": "^4.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "standard": "^10.0.3",
     "topojson": "^3.0.2",
     "watch": "^1.0.2",
