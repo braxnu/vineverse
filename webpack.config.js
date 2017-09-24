@@ -1,9 +1,6 @@
 const path = require('path')
 
 module.exports = {
-
-  entry: './src/client/index.js',
-
   module: {
     rules: [
       {
@@ -12,10 +9,5 @@ module.exports = {
         use: 'babel-loader'
       }
     ]
-  },
-
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist/assets')
   }
 }

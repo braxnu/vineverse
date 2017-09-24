@@ -6,6 +6,7 @@ const strip = require('gulp-strip-comments')
 const babel = require('gulp-babel')
 const jsonfile = require('jsonfile')
 const babelConfig = jsonfile.readFileSync('./.babelrc')
+const named = require('vinyl-named')
 
 function handleError (err) {
   console.log(err.message)
@@ -17,6 +18,7 @@ gulp.task('client', () => {
   return gulp.src([
     'src/client/index.js'
   ])
+  .pipe(named())
   .pipe(webpackStream(webpackConfig, webpack))
   .pipe(strip())
   .pipe(gulp.dest('dist/assets'))
@@ -44,6 +46,8 @@ gulp.task('server', () => {
 gulp.task('default', gulp.parallel('client', 'assets', 'server', done => done()))
 
 gulp.task('watch', () => gulp.watch(
-  'src/**/*.js',
-  gulp.parallel('client', 'server')
+  [
+    'src/**/*.js',
+    'src/**/*.html'
+  ], gulp.parallel('default')
 ).on('error', handleError))
