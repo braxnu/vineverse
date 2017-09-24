@@ -8,5 +8,11 @@ export default config => {
     res.send(users.list())
   })
 
+  router.get('/me', (req, res) => {
+    const { token } = req.cookies
+
+    res.send(users.list({ token })[0])
+  })
+
   return router
 }
