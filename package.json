@@ -8,7 +8,7 @@
     "test": "ava",
     "test:watch": "watch ava src test",
     "build": "gulp",
-    "watch": "watch gulp src/client",
+    "watch": "gulp watch",
     "start": "node dist/server"
   },
   "keywords": [

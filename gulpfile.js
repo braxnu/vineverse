@@ -7,7 +7,13 @@ const babel = require('gulp-babel')
 const jsonfile = require('jsonfile')
 const babelConfig = jsonfile.readFileSync('./.babelrc')
 
-gulp.task('js', () => {
+function handleError (err) {
+  console.log(err.message)
+  console.log(err.stack)
+  this.emit('end')
+}
+
+gulp.task('client', () => {
   return gulp.src([
     'src/client/index.js'
   ])
@@ -35,14 +41,9 @@ gulp.task('server', () => {
   .pipe(gulp.dest('dist'))
 })
 
-gulp.task('default', gulp.parallel('js', 'assets', 'server', done => done()))
+gulp.task('default', gulp.parallel('client', 'assets', 'server', done => done()))
 
-gulp.task('watch', () => {
-  return gulp.watch(
-    'src', gulp.parallel('default')
-  ).on('error', function (err) {
-    console.log(err.message)
-    console.log(err.stack)
-    this.emit('end')
-  })
-})
+gulp.task('watch', () => gulp.watch(
+  'src/**/*.js',
+  gulp.parallel('client', 'server')
+).on('error', handleError))
