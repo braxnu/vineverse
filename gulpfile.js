@@ -59,7 +59,7 @@ gulp.task('watch', () => gulp.watch(
 ).on('error', handleError))
 
 gulp.task('test', () => {
-  gulp.src([
+  return gulp.src([
     'test/**/*.js'
   ])
   .pipe(ava({verbose: true}))
@@ -69,5 +69,8 @@ gulp.task('watch:test', () => gulp.watch(
   [
     'src/**/*.js',
     'test/**/*.js'
-  ], gulp.parallel('test')
+  ], gulp.parallel(
+    'test',
+    done => done()
+  )
 ).on('error', handleError))
