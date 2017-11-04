@@ -20,10 +20,10 @@
   "author": "Karol Baczewski <braxnu@gmail.com>",
   "license": "UNLICENSED",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.17.0",
     "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
-    "express": "^4.15.4"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "ava": "^0.23.0",
@@ -39,9 +39,9 @@
     "gulp-babel": "^7.0.0",
     "gulp-strip-comments": "^2.5.1",
     "jsonfile": "^4.0.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "opn-cli": "^3.1.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
