@@ -1,7 +1,7 @@
 import test from 'ava'
 import Plantation from '../../src/shared/plantation'
 import {
-  realSecondsToGameDays,
+  realSecondsToGameDays as rtg,
   gameDaysToRealSeconds as gtr
 } from '../../src/shared/gametime'
 
@@ -16,21 +16,30 @@ test('has age which increases with game time', t => {
 })
 
 test('has specific lifespan', t => {
-  const plantation = new Plantation({
+  const pl = new Plantation({
     date: 0,
-    maxAge: 20,
-    harvestTime: 5
+    maxAge: 20
   })
 
-  t.is(plantation.isAlive(0), true)
-  t.is(plantation.isAlive(gtr(20)), true)
-  t.is(plantation.isAlive(gtr(20.1)), false)
+  t.true(pl.isAlive(0))
+  t.true(pl.isAlive(gtr(20)))
+  t.false(pl.isAlive(gtr(20.1)))
+})
+
+test('may live idefinitely', t => {
+  const pl = new Plantation({
+    date: 0,
+    maxAge: -1
+  })
+
+  t.true(pl.isAlive(gtr(0)))
+  t.true(pl.isAlive(gtr(20)))
+  t.true(pl.isAlive(gtr(1000 * 1000)))
 })
 
 test('becomes harvestable at specified age', t => {
   const pl = new Plantation({
     date: 0,
-    maxAge: 20,
     firstCropAfter: 5,
     harvestTime: 5
   })
@@ -51,7 +60,6 @@ test('becomes harvestable at specified age', t => {
 test('is harvestable for a specified time', t => {
   const pl = new Plantation({
     date: 0,
-    maxAge: 20,
     firstCropAfter: 5,
     harvestTime: 5
   })
@@ -71,7 +79,6 @@ test('is harvestable for a specified time', t => {
 test('harvest time repeats periodically', t => {
   const pl = new Plantation({
     date: 0,
-    maxAge: 40,
     firstCropAfter: 5,
     harvestTime: 5,
     harvestEvery: 10

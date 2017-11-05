@@ -3,7 +3,7 @@ import { realSecondsToGameDays, gameDaysToRealSeconds } from './gametime'
 export default class Plantation {
   constructor ({
     date = Date.now(),
-    maxAge,
+    maxAge = -1,
     firstCropAfter,
     harvestTime,
     harvestEvery = 0
@@ -20,7 +20,8 @@ export default class Plantation {
   }
 
   isAlive (realNow = Date.now()) {
-    return realNow - this.birthDate <= gameDaysToRealSeconds(this.maxAge)
+    return this.maxAge === -1 ||
+      realNow - this.birthDate <= gameDaysToRealSeconds(this.maxAge)
   }
 
   getAvailableCrop (realNow = Date.now()) {
