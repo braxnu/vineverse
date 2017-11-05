@@ -102,3 +102,25 @@ test('harvest time repeats periodically', t => {
   hasCropAt(5 + 20 + 4.9)
   hasNoCropAt(5 + 20 + 5)
 })
+
+test('size affects crop size', t => {
+  const params = {
+    date: 0,
+    firstCropAfter: 5,
+    harvestTime: 5
+  }
+
+  const pl1 = new Plantation({
+    ...params,
+    size: 1
+  })
+
+  t.is(pl1.getAvailableCrop(gtr(5)), 1)
+
+  const pl2 = new Plantation({
+    ...params,
+    size: 15
+  })
+
+  t.is(pl2.getAvailableCrop(gtr(5)), 15)
+})

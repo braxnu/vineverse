@@ -55,6 +55,9 @@
   "ava": {
     "require": [
       "babel-register"
-    ]
+    ],
+    "babel": {
+      "extends": ".babelrc"
+    }
   }
 }

@@ -6,13 +6,15 @@ export default class Plantation {
     maxAge = -1,
     firstCropAfter,
     harvestTime,
-    harvestEvery = 0
+    harvestEvery = 0,
+    size = 1
   }) {
     this.birthDate = date
     this.maxAge = maxAge // in game days
     this.firstCropAfter = firstCropAfter // in game days
     this.harvestTime = harvestTime // in game days
     this.harvestEvery = harvestEvery // in game days
+    this.size = size
   }
 
   getAge (realNow = Date.now()) {
@@ -31,6 +33,8 @@ export default class Plantation {
       x = x % this.harvestEvery
     }
 
-    return (x >= 0 && x < this.harvestTime) ? 1 : 0
+    if (x < 0 || x >= this.harvestTime) return 0
+
+    return this.size
   }
 }
