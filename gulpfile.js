@@ -17,7 +17,8 @@ function handleError (err) {
 
 gulp.task('client', () => {
   return gulp.src([
-    'src/client/index.js'
+    'src/client/index.js',
+    'src/client/c3.js'
   ])
   .pipe(named())
   .pipe(webpackStream(webpackConfig, webpack))
@@ -28,7 +29,8 @@ gulp.task('client', () => {
 gulp.task('assets', () => {
   return gulp.src([
     'src/assets/**/*',
-    'src/client/index.html'
+    'src/client/index.html',
+    'src/client/c3.html'
   ])
   .pipe(gulp.dest('dist/assets'))
 })

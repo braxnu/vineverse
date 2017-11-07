@@ -10,7 +10,8 @@
     "build": "gulp",
     "watch": "gulp watch",
     "watch:test": "gulp watch:test",
-    "start": "node dist/server"
+    "start": "node dist/server",
+    "demo": "npm run build && opn http://127.0.0.1:4000/c3.html -- 'chromium' && npm run start"
   },
   "keywords": [
     "game",
@@ -33,7 +34,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "d3": "^4.10.2",
+    "c3-react": "^0.1.13",
+    "d3": "^4.11.0",
     "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
     "gulp-ava": "^0.18.0",
     "gulp-babel": "^7.0.0",
@@ -41,6 +43,7 @@
     "jsonfile": "^4.0.0",
     "opn-cli": "^3.1.0",
     "react": "^15.6.2",
+    "react-d3-basic": "^1.6.11",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
