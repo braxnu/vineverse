@@ -2,7 +2,7 @@ import test from 'ava'
 import Plantation from '../../src/shared/plantation'
 import {
   realSecondsToGameDays as rtg,
-  gameDaysToRealSeconds as gtr
+  gameDaysToRealSeconds
 } from '../../src/shared/gametime'
 
 test('has age which increases with game time', t => {
@@ -11,8 +11,8 @@ test('has age which increases with game time', t => {
   })
 
   t.is(plantation.getAge(0), 0)
-  t.is(plantation.getAge(gtr(15)), 15)
-  t.is(plantation.getAge(gtr(100)), 100)
+  t.is(plantation.getAge(gameDaysToRealSeconds(15)), 15)
+  t.is(plantation.getAge(gameDaysToRealSeconds(100)), 100)
 })
 
 test('has specific lifespan', t => {
@@ -22,8 +22,8 @@ test('has specific lifespan', t => {
   })
 
   t.true(pl.isAlive(0))
-  t.true(pl.isAlive(gtr(20)))
-  t.false(pl.isAlive(gtr(20.1)))
+  t.true(pl.isAlive(gameDaysToRealSeconds(20)))
+  t.false(pl.isAlive(gameDaysToRealSeconds(20.1)))
 })
 
 test('may live idefinitely', t => {
@@ -32,9 +32,9 @@ test('may live idefinitely', t => {
     maxAge: -1
   })
 
-  t.true(pl.isAlive(gtr(0)))
-  t.true(pl.isAlive(gtr(20)))
-  t.true(pl.isAlive(gtr(1000 * 1000)))
+  t.true(pl.isAlive(gameDaysToRealSeconds(0)))
+  t.true(pl.isAlive(gameDaysToRealSeconds(20)))
+  t.true(pl.isAlive(gameDaysToRealSeconds(1000 * 1000)))
 })
 
 test('becomes harvestable at specified age', t => {
@@ -45,11 +45,11 @@ test('becomes harvestable at specified age', t => {
   })
 
   function hasCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) > 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) > 0)
   }
 
   function hasNoCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) === 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) === 0)
   }
 
   hasNoCropAt(0)
@@ -65,11 +65,11 @@ test('is harvestable for a specified time', t => {
   })
 
   function hasCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) > 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) > 0)
   }
 
   function hasNoCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) === 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) === 0)
   }
 
   hasCropAt(4.9 + 5)
@@ -85,11 +85,11 @@ test('harvest time repeats periodically', t => {
   })
 
   function hasCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) > 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) > 0)
   }
 
   function hasNoCropAt (daysAge) {
-    t.true(pl.getAvailableCrop(gtr(daysAge)) === 0)
+    t.true(pl.getAvailableCrop(gameDaysToRealSeconds(daysAge)) === 0)
   }
 
   hasNoCropAt(4.9 + 10)
@@ -103,7 +103,7 @@ test('harvest time repeats periodically', t => {
   hasNoCropAt(5 + 20 + 5)
 })
 
-test('size affects crop size', t => {
+test('crop size is proportional to plantation size', t => {
   const params = {
     date: 0,
     firstCropAfter: 5,
