@@ -10,11 +10,13 @@ export default class Plantation {
     size = 1
   }) {
     this.birthDate = date
+    this.lastHarvestDate = null
+    this.lastHarvestSize = 0
     this.maxAge = maxAge // in game days
     this.firstCropAfter = firstCropAfter // in game days
     this.harvestTime = harvestTime // in game days
     this.harvestEvery = harvestEvery // in game days
-    this.size = size
+    this.size = size // in ares
   }
 
   getAge (realNow = Date.now()) {
@@ -28,13 +30,29 @@ export default class Plantation {
 
   getAvailableCrop (realNow = Date.now()) {
     let x = this.getAge(realNow) - this.firstCropAfter
+    let y = x
 
     if (this.harvestEvery) {
-      x = x % this.harvestEvery
+      y = x % this.harvestEvery
     }
 
-    if (x < 0 || x >= this.harvestTime) return 0
+    if (y < 0 || y >= this.harvestTime) return 0
 
-    return this.size
+    if (realSecondsToGameDays(realNow) >=
+      realSecondsToGameDays(this.lastHarvestDate) + this.harvestEvery
+    ) {
+      return this.size
+    } else {
+      return this.size - this.lastHarvestSize
+    }
+  }
+
+  harvest (realNow = Date.now(), size) {
+    this.lastHarvestSize = Math.max(
+      Math.min(0, size),
+      this.getAvailableCrop(realNow)
+    )
+
+    this.lastHarvestDate = realNow
   }
 }

@@ -110,17 +110,42 @@ test('crop size is proportional to plantation size', t => {
     harvestTime: 5
   }
 
-  const pl1 = new Plantation({
-    ...params,
-    size: 1
+  const plA = new Plantation({...params, size: 1})
+  const plB = new Plantation({...params, size: 2})
+
+  const cropA = plA.getAvailableCrop(gameDaysToRealSeconds(5))
+  const cropB = plB.getAvailableCrop(gameDaysToRealSeconds(5))
+
+  t.true(cropA < cropB)
+})
+
+test('harvesting reduces available crop for current harvest period', t => {
+  const pl = new Plantation({
+    date: 0,
+    firstCropAfter: 5,
+    harvestTime: 5,
+    harvestEvery: 10
   })
 
-  t.is(pl1.getAvailableCrop(gtr(5)), 1)
+  const timeOfHarvest = gameDaysToRealSeconds(5)
+  const availableCrop = pl.getAvailableCrop(timeOfHarvest)
 
-  const pl2 = new Plantation({
-    ...params,
-    size: 15
+  pl.harvest(timeOfHarvest, availableCrop)
+  t.is(pl.getAvailableCrop(timeOfHarvest), 0)
+})
+
+test('available crop re-grows for next harvest period', t => {
+  const pl = new Plantation({
+    date: 0,
+    firstCropAfter: 5,
+    harvestTime: 5,
+    harvestEvery: 10
   })
 
-  t.is(pl2.getAvailableCrop(gtr(5)), 15)
+  const timeOfHarvest = gameDaysToRealSeconds(5)
+  const timeOfNextHarvest = gameDaysToRealSeconds(5 + 10)
+  const availableCrop = pl.getAvailableCrop(timeOfHarvest)
+
+  pl.harvest(timeOfHarvest, availableCrop)
+  t.is(pl.getAvailableCrop(timeOfNextHarvest), 1)
 })
