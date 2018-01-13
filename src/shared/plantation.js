@@ -4,8 +4,8 @@ export default class Plantation {
   constructor ({
     date = Date.now(),
     maxAge = -1,
-    firstCropAfter,
-    harvestTime,
+    firstCropAfter = 1,
+    harvestTime = 1,
     harvestEvery = 0,
     size = 1
   }) {
@@ -29,7 +29,11 @@ export default class Plantation {
   }
 
   getAvailableCrop (realNow = Date.now()) {
-    let x = this.getAge(realNow) - this.firstCropAfter
+    const age = this.getAge(realNow)
+
+    if (age < this.firstCropAfter) return 0
+
+    let x = age - this.firstCropAfter
     let y = x
 
     if (this.harvestEvery) {
