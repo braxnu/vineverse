@@ -39,7 +39,6 @@
     "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
     "gulp-ava": "^0.18.0",
     "gulp-babel": "^7.0.0",
-    "gulp-strip-comments": "^2.5.1",
     "jsonfile": "^4.0.0",
     "opn-cli": "^3.1.0",
     "react": "^15.6.2",
@@ -48,11 +47,12 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "remove-comments-loader": "^0.1.2",
     "standard": "^10.0.3",
     "topojson": "^3.0.2",
     "vinyl-named": "^1.1.0",
     "watch": "^1.0.2",
-    "webpack": "^3.8.1",
+    "webpack": "^3.10.0",
     "webpack-stream": "^4.0.0"
   },
   "ava": {
