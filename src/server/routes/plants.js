@@ -5,7 +5,6 @@ export default config => {
   const { plants } = config.store
 
   router.get('/', (req, res) => {
-    console.log(req.query)
     res.send(plants.list())
   })
 

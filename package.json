@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "test": "ava",
-    "test:watch": "watch ava src test",
+    "test": "nyc --reporter=html --reporter=text ava",
     "build": "gulp",
     "watch": "gulp watch",
-    "watch:test": "gulp watch:test",
+    "watch:test": "watch 'npm run test' src test",
     "start": "node dist/server",
     "demo": "npm run build && opn http://127.0.0.1:4000/c3.html -- 'chromium' && npm run start"
   },
@@ -40,6 +39,7 @@
     "gulp-ava": "^0.18.0",
     "gulp-babel": "^7.0.0",
     "jsonfile": "^4.0.0",
+    "nyc": "^11.4.1",
     "opn-cli": "^3.1.0",
     "react": "^15.6.2",
     "react-d3-basic": "^1.6.11",

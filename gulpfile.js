@@ -6,7 +6,6 @@ const babel = require('gulp-babel')
 const jsonfile = require('jsonfile')
 const babelConfig = jsonfile.readFileSync('./.babelrc')
 const named = require('vinyl-named')
-const ava = require('gulp-ava')
 
 function handleError (err) {
   console.log(err.message)
@@ -56,21 +55,4 @@ gulp.task('watch', () => gulp.watch(
     'src/**/*.js',
     'src/**/*.html'
   ], gulp.parallel('default')
-).on('error', handleError))
-
-gulp.task('test', () => {
-  return gulp.src([
-    'test/**/*.js'
-  ])
-  .pipe(ava({verbose: true}))
-})
-
-gulp.task('watch:test', () => gulp.watch(
-  [
-    'src/**/*.js',
-    'test/**/*.js'
-  ], gulp.parallel(
-    'test',
-    done => done()
-  )
 ).on('error', handleError))
