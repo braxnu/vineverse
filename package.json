@@ -4,7 +4,6 @@
   "description": "",
   "main": "/app/app.js",
   "scripts": {
-    "test": "make test",
     "start": "node app.js"
   },
   "repository": {
