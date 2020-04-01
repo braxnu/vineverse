@@ -20,6 +20,8 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
