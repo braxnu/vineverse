@@ -2,15 +2,27 @@
   "name": "vineverse",
   "version": "1.0.0",
   "description": "",
-  "main": "src/client/index.js",
+  "main": "/app/app.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "start": "node app.js",
+    "build": "webpack"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braxnu/vineverse.git"
+  },
   "author": "",
-  "license": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/braxnu/vineverse/issues"
+  },
+  "homepage": "https://github.com/braxnu/vineverse#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
-    "webpack": "^1.13.2",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
 }
