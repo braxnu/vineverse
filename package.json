@@ -2,9 +2,10 @@
   "name": "vineverse",
   "version": "1.0.0",
   "description": "",
-  "main": "/app/app.js",
+  "main": "/src/client/index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
