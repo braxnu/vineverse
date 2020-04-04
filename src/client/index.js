@@ -1,4 +1,1 @@
-<script>
-    var a = 1; 
-    console.log(a);
-</script>
+console.log(1);
