@@ -2,7 +2,7 @@
   "name": "vineverse",
   "version": "1.0.0",
   "description": "",
-  "main": "/app/app.js",
+  "main": "/src/client/index.js",
   "scripts": {
     "start": "node app.js",
     "build": "webpack"
