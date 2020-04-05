@@ -4,7 +4,7 @@
   "description": "",
   "main": "/src/client/index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/server/app.js",
     "build": "webpack"
   },
   "repository": {
