@@ -2,8 +2,8 @@
 ---
 ## Wymagania
 Aby odpalić projekt należy posiadać:
-- <a href="https://nodejs.org/en/download/">node js</a>
-- <a href="https://git-scm.com/downloads">git</a>
+- [node js](https://nodejs.org/en/download/)
+- [git](https://git-scm.com/downloads)
 
 ## Sklonuj projekt
 - Sklonuj poprzez SSH url repozytorium. Na githubie wygląda to następująco ***git@github.com:USERNAME/PROJECT.git***
@@ -13,7 +13,7 @@ Aby odpalić projekt należy posiadać:
 ```
 
 ## Uruchamianie projektu
-> Po zainstalowaniu wymaganego oprogramowania i sklonowania projektu należy:
+> Po zainstalowaniu wymaganego [oprogramowania](https://nodejs.org/) i sklonowania projektu należy:
 ### Zainstaluj dependencies
 
 - Otwieramy konsole. Upewnij się że znajdujesz sie w folderze projektu
