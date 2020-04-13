@@ -21,8 +21,11 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
-  }
+    }
 }
