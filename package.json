@@ -4,9 +4,8 @@
   "description": "",
   "main": "/src/client/index.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "webpack",
-    "dev-server": "webpack-dev-server --output-public-path=/build/"
+    "start": "node src/server/app.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
     "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.2",
