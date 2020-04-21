@@ -4,7 +4,7 @@
   "description": "",
   "main": "/src/client/index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/server/app.js",
     "build": "webpack"
   },
   "repository": {
@@ -21,6 +21,10 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "nodemon": "^2.0.2",
     "webpack": "^4.42.1",
