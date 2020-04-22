@@ -5,6 +5,7 @@
   "main": "/src/client/index.js",
   "scripts": {
     "start": "node src/server/app.js",
+    "lint": "eslint src; exit 0",
     "build": "webpack"
   },
   "repository": {
