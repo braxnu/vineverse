@@ -1,5 +1,4 @@
 # VINEVERSE
----
 ## Wymagania
 Aby odpalić projekt należy posiadać:
 - [node js](https://nodejs.org/en/download/)
@@ -28,5 +27,9 @@ Aby odpalić projekt należy posiadać:
 - Aby zbudować klienta należy:
 ```shell
     $ npm run build
+```
+- Aby odpalić testy jednostkowe należy:
+```shell
+    $ npm run test
 ```
 >Po wykonaniu wszystkich rzeczy aplikacja powinna działać na przeglądarce po wpisaniu http://localhost:3000/
