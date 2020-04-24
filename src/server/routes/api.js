@@ -4,8 +4,10 @@ const router = express.Router()
 
 const apiController = require('../controllers/apiController')
 
-router.get('/me', apiController.me)//
+router.get('/me', apiController.me)
 
-router.get('/stock', apiController.stock)//
+router.get('/stock', apiController.stock)
+
+router.get('/prices', apiController.prices)
 
 module.exports = router
