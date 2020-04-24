@@ -11,7 +11,7 @@ exports.stock = (req, res) => {
 
 exports.prices = (req, res) => {
   res.send([
-    { name: "Marchew", price: 20 },
-    { name: "Pszenica", price: 50 }
+    { name: 'Marchew', price: 20 },
+    { name: 'Pszenica', price: 50 }
   ])
 }
