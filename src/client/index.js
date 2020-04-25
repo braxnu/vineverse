@@ -1,17 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-class MainApp extends React.Component {
-  render() {
-    return (
-      <div className='app'>
-        <p>OK</p>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(<MainApp />, document.getElementById('app'))
+import Hello from './components/Hello'
+ReactDOM.render(<Hello />, document.getElementById('app'))
 
 console.log(1)
 
