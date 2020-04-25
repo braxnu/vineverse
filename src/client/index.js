@@ -1,13 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+
+const Hello = () => {
+  return (
+    <div className='Hello'>
+      <p>OK</p>
+    </div>
+  )
+}
+export default Hello
 
 console.log(1)
-const rootElement = document.getElementById("root");
-
-ReactDOM.render(
-  <span id="app" />,
-  rootElement
-);
 
 export const DemoComponent = props => (
   <div>{props.name}</div>
