@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import app from './src/server/app.js';
 
-//console.log(1)
+console.log(1)
+const rootElement = document.getElementById("root");
+
+ReactDOM.render(
+  <span id="app" />,
+  rootElement
+);
 
 export const DemoComponent = props => (
   <div>{props.name}</div>
