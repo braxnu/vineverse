@@ -1,8 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Hello from './src/client/Hello'
-ReactDOM.render(<Hello />, document.getElementById('app'))
-
 const express = require('express')
 const app = express()
 const PORT = 3000

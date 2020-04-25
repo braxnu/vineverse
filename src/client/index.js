@@ -1,13 +1,17 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
-const Hello = () => {
-  return (
-    <div className='Hello'>
-      <p>OK</p>
-    </div>
-  )
+class MainApp extends React.Component {
+  render() {
+    return (
+      <div className='app'>
+        <p>OK</p>
+      </div>
+    )
+  }
 }
-export default Hello
+
+ReactDOM.render(<MainApp />, document.getElementById('app'))
 
 console.log(1)
 
