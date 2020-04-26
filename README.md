@@ -5,10 +5,10 @@ Aby odpalić projekt należy posiadać:
 - [git](https://git-scm.com/downloads)
 
 ## Sklonuj projekt
-- Sklonuj poprzez SSH url repozytorium. Na githubie wygląda to następująco ***git@github.com:USERNAME/PROJECT.git***
+- Sklonuj poprzez HTTPS.
 ```shell
     $ cd ~/Desktop
-	$ git clone git@github.com:braxnu/vineverse.git vineverse
+    $ git clone https://github.com/braxnu/vineverse.git vineverse
 ```
 
 ## Uruchamianie projektu
