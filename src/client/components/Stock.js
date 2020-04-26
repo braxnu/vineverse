@@ -9,7 +9,7 @@ export default class Stock extends React.Component {
     }
   }
   componentDidMount() {
-    fetch('http://localhost:3000/api/stock', {
+    fetch('/api/stock', {
       method: 'GET'
     })
       .then(response => {
@@ -17,7 +17,6 @@ export default class Stock extends React.Component {
       })
       .then(data => {
         this.setState({stock: data})
-        console.log(data)
       })
   }
 
@@ -30,12 +29,19 @@ export default class Stock extends React.Component {
     }
     return <div>
       <table style={tableStyle}>
-        <tbody>
-          <tr><th>Name</th><th>Quantity</th></tr>
+        <thead>
           <tr>
-            <td>{stock.map(stock => <div key={stock.name}>{ stock.name }</div>)}</td>
-            <td>{stock.map(stock => <div key={stock.quantity}>{ stock.quantity }</div>)}</td>
+            <th>Nazwa</th>
+            <th>Ilość</th>
           </tr>
+        </thead>
+        <tbody>
+          {stock.map(stock => (
+            <tr key={stock.name}>
+              <td>{stock.name}</td>
+              <td>{stock.quantity}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

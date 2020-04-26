@@ -1,12 +1,12 @@
 import React from 'react'
 import Stock from './Stock'
 
-const Hello = () => {
+const App = () => {
   return (
-    <div className='hello'>
+    <div className='App'>
       <p>OK</p>
       <Stock />
     </div>
   )
 }
-export default Hello
+export default App
