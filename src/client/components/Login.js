@@ -7,4 +7,4 @@ const Login = () => {
     </div>
   )
 }
-export default Hello
+export default Login
