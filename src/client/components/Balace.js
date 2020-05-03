@@ -21,7 +21,7 @@ export default class Balance extends React.Component {
   }
 
   render() {
-    return <div className="App">Stan konta: {this.state.balance} {' '}
+    return <div className="Balance">Stan konta: {this.state.balance} {' '}
     </div>
   }
 }
