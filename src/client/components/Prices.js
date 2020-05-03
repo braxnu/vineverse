@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Prices extends Component {
   constructor(props) {
@@ -9,10 +9,9 @@ class Prices extends Component {
     }
   }
   componentDidMount() {
-      //czego tutaj nie dajemy localhost?
     fetch('/api/prices', {
       method: 'GET'
-    })//czy czasem nie jest tak że jak wezmiesz w jednej linijce to jest automatycznie return?
+    })
       .then(response => {
         return response.json()
       })
@@ -37,10 +36,10 @@ class Prices extends Component {
           </tr>
         </thead>
         <tbody>
-          {prices.map(prices => (
-            <tr key={prices.name}>
-              <td>{prices.name}</td>
-              <td>{prices.price}</td>
+          {prices.map(price => (
+            <tr key={price.name}>
+              <td>{price.name}</td>
+              <td>{price.price}</td>
             </tr>
           ))}
         </tbody>
@@ -49,4 +48,4 @@ class Prices extends Component {
   }
 }
 
-export default Prices;
+export default Prices
