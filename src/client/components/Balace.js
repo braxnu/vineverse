@@ -3,8 +3,8 @@ import React from 'react'
 export default class Balance extends React.Component {
   constructor(props) {
     super(props)
-    this.state ={
-      balance: []
+    this.state = {
+      balance: 0
     }
   }
   
@@ -12,15 +12,16 @@ export default class Balance extends React.Component {
     fetch('/api/me', {
       method: 'GET'
     })
-      .then(response => {
+      .then(response =>{
         return response.json()
       })
       .then(data => {
-        this.state = data.balance
+        this.setState(data)
       })
   }
 
   render() {
-    return <div className="App">Stan konta: {this.balance}</div>
+    return <div className="App">Stan konta: {this.state.balance} {' '}
+    </div>
   }
 }
