@@ -4,28 +4,23 @@ export default class Balance extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
-      me:[]
+      balance: []
     }
   }
   
   componentDidMount() {
-    fetch('http://localhost:3000/api/me', {
+    fetch('/api/me', {
       method: 'GET'
     })
       .then(response => {
         return response.json()
       })
       .then(data => {
-        this.setState({balance: data})
-        console.log(data)
+        this.state = data.balance
       })
   }
 
   render() {
-    const { me } = this.state
-
-    return <div>
-
-    </div>
+    return <div className="App">Stan konta: {this.balance}</div>
   }
 }
