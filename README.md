@@ -32,7 +32,7 @@ Aby odpalić projekt należy posiadać:
 ```shell
     $ npm run test
 ```
-
+---
 ### Uruchomienie projektu z wykorzystaniem: watch & nodemon
 - Przejdz do katalogu projektu i wykonaj następujące polecenia: 
    
@@ -44,6 +44,14 @@ Aby odpalić projekt należy posiadać:
 ```shell
    $ npm run watch
 ```
+Ta komenda pozwala na uruchamienie skryptów jakie zostały dodane do pliku: `package.json`.
 
+#### Zmianty jakie zostały dodane do: `package.json`
+
+```JS
+    "watch": "run-p watch:server watch:client",
+    "watch:server": "nodemon -w src/server/ src/server/app.js",
+    "watch:client": "webpack --watch",
+```
 
 >Po wykonaniu wszystkich rzeczy aplikacja powinna działać na przeglądarce po wpisaniu http://localhost:3000/
