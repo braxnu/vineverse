@@ -33,13 +33,13 @@ Aby odpalić projekt należy posiadać:
     $ npm run test
 ```
 ---
-### Uruchomienie projektu z wykorzystaniem: watch & nodemon
+### Uruchomienie projektu z wykorzystaniem [nodemon](https://www.npmjs.com/package/nodemon)
 - Przejdz do katalogu projektu i wykonaj następujące polecenia: 
    
 ```shell
    $ npm i
 ``` 
-- Uruchomienie: `servera`, `clienta` z wykorzystaniem: `watchera` oraz `nodemon`
+- Uruchomienie: `servera`, `clienta` z wykorzystaniem [`nodemon`](https://www.npmjs.com/package/nodemon)
  
 ```shell
    $ npm run watch
