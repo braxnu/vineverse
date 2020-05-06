@@ -24,7 +24,6 @@
   "homepage": "https://github.com/braxnu/vineverse#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "npm-watch": "^0.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
