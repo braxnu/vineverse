@@ -32,4 +32,18 @@ Aby odpalić projekt należy posiadać:
 ```shell
     $ npm run test
 ```
+
+### Uruchomienie projektu z wykorzystaniem: watch & nodemon
+- Przejdz do katalogu projektu i wykonaj następujące polecenia: 
+   
+```shell
+   $ npm i
+``` 
+- Uruchomienie: `servera`, `clienta` z wykorzystaniem: `watchera` oraz `nodemon`
+ 
+```shell
+   $ npm run watch
+```
+
+
 >Po wykonaniu wszystkich rzeczy aplikacja powinna działać na przeglądarce po wpisaniu http://localhost:3000/
