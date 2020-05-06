@@ -12,12 +12,7 @@ export default class Balance extends React.Component {
   
   componentDidMount() {
     axios.get('/api/me')
-      .then(response => {
-        return response.data
-      })
-      .then(data => {
-        this.setState(data)
-      })
+      .then(response => this.setState(response.data))
   }
 
   render() {
