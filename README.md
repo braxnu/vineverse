@@ -54,4 +54,7 @@ Ta komenda pozwala na uruchamienie skryptów jakie zostały dodane do pliku: `pa
     "watch:client": "webpack --watch",
 ```
 
+- "watch": "run-p watch:server watch:client" - komenda pozwala na 
+
+
 >Po wykonaniu wszystkich rzeczy aplikacja powinna działać na przeglądarce po wpisaniu http://localhost:3000/
