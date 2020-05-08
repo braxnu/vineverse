@@ -32,4 +32,19 @@ Aby odpalić projekt należy posiadać:
 ```shell
     $ npm run test
 ```
+---
+### Uruchomienie projektu z wykorzystaniem [nodemon](https://www.npmjs.com/package/nodemon)
+- Przejdz do katalogu projektu i wykonaj następujące polecenia: 
+   
+```shell
+   $ npm i
+``` 
+- Uruchomienie: `servera`, `clienta` z wykorzystaniem [`nodemon`](https://www.npmjs.com/package/nodemon)
+ 
+```shell
+   $ npm run watch
+```
+Ta komenda pozwala na uruchamienie skryptów jakie zostały dodane do pliku: `package.json`.
+
+---
 >Po wykonaniu wszystkich rzeczy aplikacja powinna działać na przeglądarce po wpisaniu http://localhost:3000/
