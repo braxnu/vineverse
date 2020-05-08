@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default class Stock extends React.Component {
   constructor(props) {
@@ -9,11 +10,9 @@ export default class Stock extends React.Component {
     }
   }
   componentDidMount() {
-    fetch('/api/stock', {
-      method: 'GET'
-    })
+    axios.get('/api/stock')
       .then(response => {
-        return response.json()
+        return response.data
       })
       .then(data => {
         this.setState({stock: data})
