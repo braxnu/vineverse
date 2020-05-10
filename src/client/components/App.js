@@ -1,14 +1,16 @@
 import React from 'react'
 import Stock from './Stock'
-import Balance from './Balace'
+import Balance from './Balance'
 import Prices from './Prices'
+import Username from './Username'
 
 const App = () => {
   return (
     <div className='App'>
       <p>OK</p>
-      <Stock />
+      <Username />
       <Balance />
+      <Stock />
       <Prices />
     </div>
   )
