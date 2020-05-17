@@ -5,15 +5,17 @@ import styles from './Username.css'
 export default class Username extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       username: ''
     }
   }
-  
+
   componentDidMount() {
     axios.get('/api/me')
-      .then(response => this.setState(response.data.username))
+      .then(response => this.setState({
+        username: response.data.username
+      }))
   }
 
   render() {
