@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import styles from './Username.css'
+import './Username.css'
 
 export default class Username extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Username extends React.Component {
   }
 
   render() {
-    return <div className="styles.Username">Zalogowany Użytkownik: {this.state.username}
+    return <div className="Username">Zalogowany Użytkownik: {this.state.username}
     </div>
   }
 }
