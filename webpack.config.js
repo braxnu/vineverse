@@ -7,12 +7,27 @@ module.exports = {
     },
     mode: 'development',
     module: {
-        rules: [{
-            test: /\.js?$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader'],
-        }]
+        rules: [
+            {
+              test: /\.js$/,
+              use: {
+                loader: 'babel-loader',
+              }
+            },
+            {
+              test: /\.s?css$/,
+              use: [
+               {
+                  loader: 'css-loader',
+                  options: {sourceMap: true},
+                },
+                {
+                  loader: 'sass-loader',
+                  options: {sourceMap: true},
+                },
+              ],
+            },
+      
+          ]
     }
 }
