@@ -4,15 +4,17 @@ import axios from 'axios'
 export default class Balance extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       balance: 0
     }
   }
-  
+
   componentDidMount() {
     axios.get('/api/me')
-      .then(response => this.setState(response.data))
+      .then(response => this.setState({
+        balance: response.data.balance
+      }))
   }
 
   render() {

@@ -1,5 +1,5 @@
 exports.me = (req, res) => {
-  res.send({ balance: 1000 })
+  res.send({ balance: 1000, username: 'Zenon'})
 }
 
 exports.stock = (req, res) => {
