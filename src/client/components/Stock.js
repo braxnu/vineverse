@@ -1,48 +1,50 @@
-import React from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { fetchStock } from '../state/stock'
 
-export default class Stock extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      stock: []
-    }
-  }
-  componentDidMount() {
-    axios.get('/api/stock')
-      .then(response => {
-        return response.data
-      })
-      .then(data => {
-        this.setState({stock: data})
-      })
-  }
-
-  render() {
-    const { stock } = this.state
-
-    const tableStyle = {
-      border: '1px solid black',
-      borderCollapse: 'collapse'
-    }
-    return <div>
-      <table style={tableStyle}>
-        <thead>
-          <tr>
-            <th>Nazwa</th>
-            <th>Ilość</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stock.map(stock => (
-            <tr key={stock.name}>
-              <td>{stock.name}</td>
-              <td>{stock.quantity}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  }
+const tableStyle = {
+  border: '1px solid black',
+  borderCollapse: 'collapse',
 }
+
+export function Stock ({stock, fetchStock}) {
+  useEffect(() => {
+    fetchStock()
+  }, [])
+
+  return <div>
+    <table style={tableStyle}>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Ilość</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {stock.map(stock => (
+          <tr key={stock.name}>
+            <td>{stock.name}</td>
+            <td>{stock.quantity}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+}
+
+Stock.propTypes = {
+  stock: PropTypes.array,
+  fetchStock: PropTypes.func,
+}
+
+const mapStateToProps = state => ({
+  stock: state.stock,
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchStock: () => dispatch(fetchStock()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stock)

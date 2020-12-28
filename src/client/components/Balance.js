@@ -1,24 +1,31 @@
 import React from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { fetchBalance } from '../state/user'
 
-export default class Balance extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      balance: 0
-    }
-  }
-
+export class Balance extends React.Component {
   componentDidMount() {
-    axios.get('/api/me')
-      .then(response => this.setState({
-        balance: response.data.balance
-      }))
+    this.props.fetchBalance()
   }
 
   render() {
-    return <div className="Balance">Stan konta: {this.state.balance} {' '}
+    return <div className="Balance">
+      Stan konta: {this.props.balance}
     </div>
   }
 }
+
+Balance.propTypes = {
+  balance: PropTypes.number,
+  fetchBalance: PropTypes.func,
+}
+
+const mapStateToProps = state => ({
+  balance: state.user.balance,
+})
+
+const mapDipatchToProps = dispatch => ({
+  fetchBalance: () => dispatch(fetchBalance()),
+})
+
+export default connect(mapStateToProps, mapDipatchToProps)(Balance)
