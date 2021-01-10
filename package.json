@@ -9,8 +9,9 @@
     "watch:client": "webpack --watch",
     "start": "node src/server/app.js",
     "lint": "eslint src",
+    "jest": "jest",
     "build": "webpack",
-    "test": "jest"
+    "test": "run-s lint jest"
   },
   "repository": {
     "type": "git",
