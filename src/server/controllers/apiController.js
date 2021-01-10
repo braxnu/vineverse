@@ -5,7 +5,7 @@ exports.me = (req, res) => {
 exports.stock = (req, res) => {
   res.send([
     { name: 'Marchew', quantity: 200 },
-    { name: 'Pszenica', quantity: 500 }
+    { name: 'Pszenica', quantity: 500 },
   ])
 }
 

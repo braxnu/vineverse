@@ -1,31 +1,21 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { fetchPrices } from '../state/prices'
+
+const tableStyle = {
+  border: '1px solid black',
+  borderCollapse: 'collapse',
+}
 
 class Prices extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      prices: []
-    }
-  }
   componentDidMount() {
-    axios.get('/api/prices')
-      .then(response => {
-        return response.data
-      })
-      .then(data => {
-        this.setState({prices: data})
-      })
+    this.props.fetchPrices()
   }
 
   render() {
-    const { prices } = this.state
+    const { prices } = this.props
 
-    const tableStyle = {
-      border: '1px solid black',
-      borderCollapse: 'collapse'
-    }
     return <div>
       <table style={tableStyle}>
         <thead>
@@ -47,4 +37,16 @@ class Prices extends Component {
   }
 }
 
-export default Prices
+Prices.propTypes = {
+  prices: PropTypes.array,
+  fetchPrices: PropTypes.func,
+}
+
+export default connect(
+  state => ({
+    prices: state.prices,
+  }),
+  dispatch => ({
+    fetchPrices: () => dispatch(fetchPrices()),
+  })
+)(Prices)
