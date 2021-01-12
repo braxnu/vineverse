@@ -23,6 +23,13 @@ const Login = ({
       }}>
         Login
       </button>
+
+      <button onClick={async () => {
+        await axios.post('/auth/register', {login, password})
+        alert('Account has been created')
+      }}>
+        Register
+      </button>
     </div>
   )
 }
