@@ -7,6 +7,8 @@ import { Provider } from 'react-redux'
 import userReducer from './state/user'
 import stockReducer from './state/stock'
 import pricesReducer from './state/prices'
+import Authenticated from './components/authenticated'
+import Login from './components/login'
 
 const store = configureStore({
   reducer: {
@@ -18,7 +20,9 @@ const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Authenticated renderNotAuthenticated={() => <Login />}>
+      <App />
+    </Authenticated>
   </Provider>,
   document.getElementById('app')
 )
