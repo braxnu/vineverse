@@ -38,7 +38,7 @@ Authenticated.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: Boolean(state.user.username),
+  isAuthenticated: Boolean(state.user.name),
 })
 
 const mapDispatchToProps = dispatch => ({

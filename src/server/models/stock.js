@@ -3,14 +3,10 @@ const { model, Schema, ObjectId } = mongoose
 // const UserModel = require('./user')
 // const Product = require('./product')
 
-module.exports = model('Order', new Schema({
-  owner: ObjectId,
-  direction: {type: String, enum: ['buy', 'sell']},
+module.exports = model('Stock', new Schema({
+  ownerId: ObjectId,
   productId: ObjectId,
   quantity: Number,
-
-  // per unit
-  price: Number,
-}), 'order')
+}), 'stock')
 
 

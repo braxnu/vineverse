@@ -18,7 +18,7 @@ Username.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  username: state.user.username,
+  username: state.user.name,
 })
 
 export default connect(mapStateToProps)(Username)

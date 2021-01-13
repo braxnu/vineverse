@@ -24,8 +24,8 @@ export function Stock ({stock, fetchStock}) {
 
       <tbody>
         {stock.map(stock => (
-          <tr key={stock.name}>
-            <td>{stock.name}</td>
+          <tr key={stock._id}>
+            <td>{stock.product.name}</td>
             <td>{stock.quantity}</td>
           </tr>
         ))}

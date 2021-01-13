@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-  username: '',
+  name: '',
   balance: 0,
 }
 
@@ -22,7 +22,7 @@ const userSlice = createSlice({
     login(state, {payload}) {
       return {
         ...state,
-        username: payload.username,
+        name: payload.name,
       }
     },
   },
