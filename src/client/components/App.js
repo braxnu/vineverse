@@ -4,6 +4,7 @@ import Balance from './Balance'
 import Prices from './Prices'
 import Username from './Username'
 import Menu from './Menu'
+import Orders from './orders'
 
 const items = [
   {display: 'Strona główna', url: '/'},
@@ -19,6 +20,8 @@ const App = () => {
       <Balance />
       <Stock />
       <Prices />
+      <Orders side="buy" />
+      <Orders side="sell" />
     </div>
   )
 }

@@ -26,8 +26,6 @@ exports.auth = async (req, res) => {
     password,
   }).exec()
 
-  console.log({userDoc})
-
   if (userDoc) {
     const token = Math.random().toString(30)
 

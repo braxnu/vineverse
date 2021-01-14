@@ -9,6 +9,7 @@ const auth = require('./routes/auth')
 const config = require('../../config')
 const mongoose = require('mongoose')
 const ProductModel = require('./models/product')
+const seed = require('./seed')
 
 require('./models')
 
@@ -25,34 +26,7 @@ app.use('/auth', auth)
     useUnifiedTopology: true,
   })
 
-  const products = [
-    'Jabłko',
-    'Gruszka',
-    'Marchew',
-    'Chmiel',
-    'Banan',
-    'Pszenica',
-    'Ryż',
-    'Awokado',
-    'Czarna porzeczka',
-    'Agrest',
-    'Burak czerwony',
-  ]
-
-  for (let i = 0; i < products.length; i++) {
-    await ProductModel.updateOne(
-      {name: products[i]},
-      { $set: { name: products[i] }},
-      {upsert: true}
-    ).exec()
-  }
-
-  app.locals.productCache = (await ProductModel.find().exec())
-    .map(d => d.toObject())
-    .reduce((acc, p) => ({
-      ...acc,
-      [p._id]: p,
-    }), {})
+  // await seed()
 
   app.listen(PORT, () =>
     console.log(`Example app listening on port ${PORT}!`)

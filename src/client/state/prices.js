@@ -4,7 +4,7 @@ import axios from 'axios'
 const initialState = []
 
 export const fetchPrices = createAsyncThunk(
-  'stock/fetchPrices',
+  'prices/fetch',
   async () => {
     const { data } = await axios.get('/api/prices')
 

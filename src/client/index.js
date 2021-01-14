@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import userReducer from './state/user'
 import stockReducer from './state/stock'
 import pricesReducer from './state/prices'
+import ordersReducer from './state/orders'
 import Authenticated from './components/authenticated'
 import Login from './components/login'
 
@@ -15,6 +16,7 @@ const store = configureStore({
     user: userReducer,
     stock: stockReducer,
     prices: pricesReducer,
+    orders: ordersReducer,
   },
 })
 
