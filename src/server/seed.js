@@ -46,7 +46,7 @@ const seed = async () => {
 
   await OrderModel.deleteMany()
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 300; i++) {
     const order = new OrderModel({
       ownerId: rand(users).id,
       side: rand(['buy', 'sell']),

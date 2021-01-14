@@ -10,6 +10,7 @@ import pricesReducer from './state/prices'
 import ordersReducer from './state/orders'
 import Authenticated from './components/authenticated'
 import Login from './components/login'
+import './index.scss'
 
 const store = configureStore({
   reducer: {

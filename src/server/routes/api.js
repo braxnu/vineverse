@@ -11,5 +11,6 @@ router.get('/prices', apiController.prices)
 
 router.get('/orders', orderController.getList)
 router.post('/orders/sell', orderController.sell)
+router.post('/orders/buy', orderController.buy)
 
 module.exports = router

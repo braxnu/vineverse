@@ -12,6 +12,13 @@ export const fetchStock = createAsyncThunk(
   }
 )
 
+export const selectQuantity = (state, product) => {
+  const stock = state.stock
+    .find(s => s.product._id === product._id)
+
+  return stock.quantity
+}
+
 const stockSlice = createSlice({
   name: 'stock',
   initialState,

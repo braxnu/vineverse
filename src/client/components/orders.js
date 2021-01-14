@@ -13,7 +13,7 @@ const tableStyle = {
 const Orders = ({
   fetchList,
   list,
-  side,
+  stockQuantities,
 }) => {
   useEffect(() => {
     fetchList()
@@ -25,12 +25,20 @@ const Orders = ({
         <tr>
           <th>Gracz</th>
           <th>Produkt</th>
-          <th>Ilość</th>
-          <th>Cena</th>
+          <th className="amount">Ilość</th>
+          <th className="amount">Cena</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        {list.map(o => <OrderRow key={o._id} {...o} />)}
+        {list.map(o =>
+          <OrderRow
+            key={o._id}
+            {...o}
+            stockQuantities={stockQuantities}
+          />
+        )}
       </tbody>
     </table>
   )
@@ -43,9 +51,25 @@ Orders.propTypes = {
 }
 
 export default connect(
-  (state, ownProps) => ({
-    list: state.orders.filter(o => o.side === ownProps.side),
-  }),
+  (state, ownProps) => {
+    const list = state.orders
+      .filter(o => o.side === ownProps.side)
+      .sort((a, b) => a.price - b.price)
+
+    if (ownProps.side === 'buy') {
+      list.reverse()
+    }
+
+    const stockQuantities = state.stock.reduce((acc, s) => ({
+      ...acc,
+      [s.product._id]: s.quantity,
+    }), {})
+
+    return ({
+      list,
+      stockQuantities,
+    })
+  },
   dispatch => ({
     fetchList: () => dispatch(fetchOrders()),
   })

@@ -19,9 +19,11 @@ const App = () => {
       <Username />
       <Balance />
       <Stock />
-      <Prices />
-      <Orders side="buy" />
-      <Orders side="sell" />
+
+      <div className="row">
+        <Orders side="buy" />
+        <Orders side="sell" />
+      </div>
     </div>
   )
 }
