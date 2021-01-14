@@ -33,10 +33,10 @@ const seed = async () => {
   await StockModel.deleteMany()
 
   for (let i = 0; i < users.length; i++) {
-    for (let j = 0; j < 20; j++) {
+    for (let j = 0; j < products.length; j++) {
       const stock = new StockModel({
-        ownerId: rand(users).id,
-        product: rand(products),
+        ownerId: users[i].id,
+        product: products[j],
         quantity: Math.floor(Math.random() * 100) * 10 || 10,
       })
 
