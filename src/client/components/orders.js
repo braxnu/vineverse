@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchOrders } from '../state/orders'
+import OrderRow from './order-row'
 
 const tableStyle = {
   border: '1px solid black',
@@ -12,6 +13,7 @@ const tableStyle = {
 const Orders = ({
   fetchList,
   list,
+  side,
 }) => {
   useEffect(() => {
     fetchList()
@@ -28,15 +30,8 @@ const Orders = ({
         </tr>
       </thead>
       <tbody>
-        {list.map(o => (
-          <tr key={o._id}>
-            <td>{o.ownerName}</td>
-            <td>{o.product.name}</td>
-            <td>{o.quantity}</td>
-            <td>{o.price}</td>
-          </tr>
-        ))}
-      </tbody>d
+        {list.map(o => <OrderRow key={o._id} {...o} />)}
+      </tbody>
     </table>
   )
 }

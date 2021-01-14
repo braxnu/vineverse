@@ -8,6 +8,12 @@ exports.me = async (req, res) => {
   res.send(req.user)
 }
 
+exports.balance = async (req, res) => {
+  res.send({
+    balance: (await UserModel.findById(req.user.id).exec()).balance
+  })
+}
+
 exports.stock = async (req, res) => {
   const list = (
     await StockModel.find({

@@ -7,9 +7,9 @@ const initialState = {
 }
 
 export const fetchBalance = createAsyncThunk(
-  'users/fetchBalance',
+  'user/fetchBalance',
   async () => {
-    const { data } = await axios.get('/api/me')
+    const { data } = await axios.get('/api/me/balance')
 
     return data
   }
