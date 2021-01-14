@@ -7,6 +7,7 @@ module.exports = model('User', new Schema({
   password: String,
   npc: Boolean,
   balance: Number,
+  token: String,
 }), 'user')
 
 

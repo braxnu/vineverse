@@ -2,11 +2,19 @@ const UserModel = require('../models').User
 
 const authMap = {}
 
-exports.protect = (req, res, next) => {
+exports.protect = async (req, res, next) => {
   const token = req.cookies.token
 
   if (token) {
-    const user = authMap[token]
+    let user = authMap[token]
+
+    if (!user) {
+      user = await UserModel.findOne({ token }).exec()
+
+      if (user) {
+        authMap[token] = user
+      }
+    }
 
     if (user) {
       req.user = user
@@ -32,6 +40,8 @@ exports.auth = async (req, res) => {
     authMap[token] = userDoc
     res.cookie('token', token, { maxAge: 1000 * 3600, httpOnly: true })
     res.sendStatus(200)
+    userDoc.token = token
+    userDoc.save()
   } else {
     res.sendStatus(401)
   }
