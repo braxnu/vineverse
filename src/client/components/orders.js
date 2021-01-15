@@ -14,6 +14,7 @@ const Orders = ({
   fetchList,
   list,
   stockQuantities,
+  side,
 }) => {
   useEffect(() => {
     fetchList()
@@ -21,6 +22,7 @@ const Orders = ({
 
   return (
     <table style={tableStyle}>
+      <caption>Oferty {side === 'buy' ? 'kupna' : 'sprzedaży'}</caption>
       <thead>
         <tr>
           <th>Gracz</th>

@@ -7,7 +7,7 @@ const StockModel = require('../models/stock')
 const userNameMap = {}
 const MINUTE = 60 * 1000
 
-const refillDepletedOrders = async () => {
+const refillDepletedPublicOrders = async () => {
   const oneHourAgo = dayjs().subtract(1, 'h').toDate()
 
   const list = await OrderModel.find({
@@ -22,6 +22,9 @@ const refillDepletedOrders = async () => {
         createdDate: { $lt: oneHourAgo },
       },
     ],
+    $and: [
+      {public: true},
+    ],
   }).exec()
 
   for (let i = 0; i < list.length; i++) {
@@ -34,10 +37,10 @@ const refillDepletedOrders = async () => {
   }
 
   console.log(new Date(), list.length + ' orders refilled')
-  setTimeout(refillDepletedOrders, 1 * MINUTE)
+  setTimeout(refillDepletedPublicOrders, 1 * MINUTE)
 }
 
-setTimeout(refillDepletedOrders, 1 * MINUTE)
+setTimeout(refillDepletedPublicOrders, 1 * MINUTE)
 
 exports.getList = async (req, res) => {
   const list = (
@@ -64,6 +67,7 @@ exports.getList = async (req, res) => {
 }
 
 exports.sell = async (req, res) => {
+  // this interacts with 'buy' orders
   const b = req.body
   const session = await UserModel.db.startSession()
 
@@ -108,6 +112,7 @@ exports.sell = async (req, res) => {
 }
 
 exports.buy = async (req, res) => {
+  // this interacts with 'sell' orders
   const b = req.body
   const session = await UserModel.db.startSession()
 
@@ -147,7 +152,12 @@ exports.buy = async (req, res) => {
 
   await UserModel.updateOne(
     { _id: req.user.id },
-    { $inc: { balance: -1 * b.quantity * order.price } }
+    { $inc: { balance: -1 * amount } }
+  )
+
+  await UserModel.updateOne(
+    { _id: order.ownerId },
+    { $inc: { balance: amount } }
   )
 
   await session.commitTransaction()
@@ -156,50 +166,65 @@ exports.buy = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-  const b = req.body
-  console.log({b})
+  const { side, quantity, price, stockId } = req.body
+  console.log({ side, stockId, quantity, price })
   const session = await UserModel.db.startSession()
 
   await session.startTransaction()
 
-  // const user = await UserModel.findById(req.user.id).exec()
+  const user = await UserModel.findById(req.user.id).exec()
+  const stock = await StockModel.findById(stockId).exec()
 
-  // const order = await OrderModel.findOne({
-  //   _id: ObjectId(b.orderId),
-  // }).exec()
+  if (side === 'buy') {
+    const amount = quantity * price
 
-  // const stock = await StockModel.findOne({
-  //   ownerId: req.user.id,
-  //   product: order.product,
-  // }).exec()
+    if (user.balance < amount) {
+      res.status(400).send({
+        error: 'not enough cash',
+      })
+      session.abortTransaction()
+      return
+    }
 
-  // const amount = b.quantity * order.price
+    await UserModel.findByIdAndUpdate(
+      user.id,
+      {
+        $inc: {
+          balance: -1 * amount,
+        },
+      }
+    ).exec()
+  } else {
+    // side === 'sell'
+    if (stock.quantity < quantity) {
+      res.status(400).send({
+        error: 'not enough stock',
+      })
+      session.abortTransaction()
+      return
+    }
 
-  // if (
-  //   user.balance < amount ||
-  //   b.quantity > order.quantity
-  // ) {
-  //   res.status(400).send({error: {message: 'asking too much'}})
-  //   await session.abortTransaction()
-  //   return
-  // }
+    await StockModel.findByIdAndUpdate(
+      stock.id,
+      {
+        $inc: {
+          quantity: -1 * quantity,
+        },
+      }
+    ).exec()
+  }
 
-  // await OrderModel.updateOne(
-  //   { _id: order.id },
-  //   { $inc: { quantity: -1 * b.quantity } }
-  // )
+  const order = new OrderModel({
+    createdDate: new Date(),
+    ownerId: user.id,
+    side,
+    product: stock.product,
+    quantity,
+    price,
+  })
 
-  // await StockModel.updateOne(
-  //   { _id: stock.id },
-  //   { $inc: { quantity: b.quantity } }
-  // )
-
-  // await UserModel.updateOne(
-  //   { _id: req.user.id },
-  //   { $inc: { balance: -1 * b.quantity * order.price } }
-  // )
-
-  // await session.commitTransaction()
-  // session.endSession()
+  await order.save()
+  await session.commitTransaction()
+  session.endSession()
   res.send('ok')
 }

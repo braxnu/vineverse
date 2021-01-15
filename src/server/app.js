@@ -26,7 +26,7 @@ app.use('/auth', auth)
     useUnifiedTopology: true,
   })
 
-  // await seed()
+  await seed()
 
   app.listen(PORT, () =>
     console.log(`Example app listening on port ${PORT}!`)

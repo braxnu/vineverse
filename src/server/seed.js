@@ -46,7 +46,7 @@ const seed = async () => {
 
   await OrderModel.deleteMany()
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 10; i++) {
     const order = new OrderModel({
       createdDate: new Date(),
       ownerId: rand(users).id,
@@ -54,6 +54,7 @@ const seed = async () => {
       product: rand(products),
       quantity: Math.ceil(Math.random() * 50) * 100,
       price: Number((Math.ceil(Math.random() * 1000) / 100).toFixed(2)),
+      public: true,
     })
 
     await order.save()
