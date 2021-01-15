@@ -26,6 +26,8 @@ exports.protect = async (req, res, next) => {
   res.sendStatus(401)
 }
 
+const DAY = 1000 * 3600 * 24
+
 exports.auth = async (req, res) => {
   const { login, password } = req.body
 
@@ -38,7 +40,7 @@ exports.auth = async (req, res) => {
     const token = Math.random().toString(30)
 
     authMap[token] = userDoc
-    res.cookie('token', token, { maxAge: 1000 * 3600, httpOnly: true })
+    res.cookie('token', token, { maxAge: DAY, httpOnly: true })
     res.sendStatus(200)
     userDoc.token = token
     userDoc.save()

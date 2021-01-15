@@ -7,6 +7,7 @@ module.exports = model('Order', new Schema({
   side: {type: String, enum: ['buy', 'sell']},
   product: ProductModel.schema,
   quantity: Number,
+  createdDate: Date,
 
   // per unit
   price: Number,

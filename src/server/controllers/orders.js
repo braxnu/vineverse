@@ -1,4 +1,5 @@
 const { Types: { ObjectId } } = require('mongoose')
+const dayjs = require('dayjs')
 const UserModel = require('../models/user')
 const OrderModel = require('../models/order')
 const StockModel = require('../models/stock')
@@ -7,8 +8,20 @@ const userNameMap = {}
 const MINUTE = 60 * 1000
 
 const refillDepletedOrders = async () => {
+  const oneHourAgo = dayjs().subtract(1, 'h').toDate()
+
   const list = await OrderModel.find({
-    quantity: 0,
+    $or: [
+      {
+        quantity: 0,
+      },
+      {
+        createdDate: { $exists: false },
+      },
+      {
+        createdDate: { $lt: oneHourAgo },
+      },
+    ],
   }).exec()
 
   for (let i = 0; i < list.length; i++) {
@@ -16,6 +29,7 @@ const refillDepletedOrders = async () => {
 
     order.quantity = Math.ceil(Math.random() * 50) * 100
     order.price = Number((Math.ceil(Math.random() * 1000) / 100).toFixed(2))
+    order.createdDate = new Date()
     await order.save()
   }
 
@@ -111,8 +125,6 @@ exports.buy = async (req, res) => {
   }).exec()
 
   const amount = b.quantity * order.price
-
-  console.log({b, order, stock, amount})
 
   if (
     user.balance < amount ||

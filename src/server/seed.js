@@ -48,6 +48,7 @@ const seed = async () => {
 
   for (let i = 0; i < 300; i++) {
     const order = new OrderModel({
+      createdDate: new Date(),
       ownerId: rand(users).id,
       side: rand(['buy', 'sell']),
       product: rand(products),
