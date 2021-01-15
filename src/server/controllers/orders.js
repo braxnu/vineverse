@@ -154,3 +154,52 @@ exports.buy = async (req, res) => {
   session.endSession()
   res.send('ok')
 }
+
+exports.create = async (req, res) => {
+  const b = req.body
+  console.log({b})
+  const session = await UserModel.db.startSession()
+
+  await session.startTransaction()
+
+  // const user = await UserModel.findById(req.user.id).exec()
+
+  // const order = await OrderModel.findOne({
+  //   _id: ObjectId(b.orderId),
+  // }).exec()
+
+  // const stock = await StockModel.findOne({
+  //   ownerId: req.user.id,
+  //   product: order.product,
+  // }).exec()
+
+  // const amount = b.quantity * order.price
+
+  // if (
+  //   user.balance < amount ||
+  //   b.quantity > order.quantity
+  // ) {
+  //   res.status(400).send({error: {message: 'asking too much'}})
+  //   await session.abortTransaction()
+  //   return
+  // }
+
+  // await OrderModel.updateOne(
+  //   { _id: order.id },
+  //   { $inc: { quantity: -1 * b.quantity } }
+  // )
+
+  // await StockModel.updateOne(
+  //   { _id: stock.id },
+  //   { $inc: { quantity: b.quantity } }
+  // )
+
+  // await UserModel.updateOne(
+  //   { _id: req.user.id },
+  //   { $inc: { balance: -1 * b.quantity * order.price } }
+  // )
+
+  // await session.commitTransaction()
+  // session.endSession()
+  res.send('ok')
+}

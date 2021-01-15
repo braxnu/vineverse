@@ -10,6 +10,7 @@ router.get('/stock', apiController.stock)
 router.get('/prices', apiController.prices)
 
 router.get('/orders', orderController.getList)
+router.post('/orders', orderController.create)
 router.post('/orders/sell', orderController.sell)
 router.post('/orders/buy', orderController.buy)
 

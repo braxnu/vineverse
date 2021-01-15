@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchStock } from '../state/stock'
+import StockRow from './stock-row'
 
 const tableStyle = {
   border: '1px solid black',
@@ -19,15 +20,13 @@ export function Stock ({stock, fetchStock}) {
         <tr>
           <th>Nazwa</th>
           <th>Ilość</th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
         {stock.map(stock => (
-          <tr key={stock._id}>
-            <td>{stock.product.name}</td>
-            <td>{stock.quantity}</td>
-          </tr>
+          <StockRow key={stock._id} {...stock} />
         ))}
       </tbody>
     </table>

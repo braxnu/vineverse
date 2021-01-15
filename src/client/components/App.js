@@ -1,5 +1,5 @@
 import React from 'react'
-import Stock from './Stock'
+import Stock from './stock'
 import Balance from './Balance'
 import Prices from './Prices'
 import Username from './Username'
