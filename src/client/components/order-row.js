@@ -39,7 +39,6 @@ const OrderRow = o => {
       <td>
         <input
           value={quantity}
-          size={String(o.quantity).length}
           type="number"
           max={o.quantity}
           min={1}
@@ -49,6 +48,7 @@ const OrderRow = o => {
               execute()
             }
           }}
+          className="quantity"
         />
       </td>
       <td>

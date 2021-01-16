@@ -24,32 +24,33 @@ const CreateOrder = props => {
   }
 
   return (
-    <div>
+    <>
       <input
         value={quantity}
         title="Ilość"
-        size={String(quantity).length + 1}
         type="number"
         min={1}
         step={1}
         onChange={ev => setQuantity(ev.target.value)}
+        className="quantity"
       />
       <input
         value={price}
         title="Cena"
-        size={String(quantity).length + 1}
         type="number"
         min={0.01}
         step={0.01}
         onChange={ev => setPrice(ev.target.value)}
+        className="quantity"
       />
       <button onClick={() => execute({side: 'buy'})}>Kup</button>
       <button onClick={() => execute({side: 'sell'})}>Sprzedaj</button>
-    </div>
+    </>
   )
 }
 
 CreateOrder.propTypes = {
+  _id: PropTypes.string,
   product: PropTypes.object,
   fetchOrders: PropTypes.func,
   fetchBalance: PropTypes.func,

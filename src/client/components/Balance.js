@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchBalance } from '../state/user'
+import formatter from 'format-number'
+
+const format = formatter({round: 2})
 
 export class Balance extends React.Component {
   componentDidMount() {
@@ -10,7 +13,7 @@ export class Balance extends React.Component {
 
   render() {
     return <div className="Balance">
-      Stan konta: {this.props.balance}
+      Stan konta: ${format(this.props.balance)}
     </div>
   }
 }

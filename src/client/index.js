@@ -8,12 +8,14 @@ import userReducer from './state/user'
 import stockReducer from './state/stock'
 import pricesReducer from './state/prices'
 import ordersReducer from './state/orders'
+import plantsReducer from './state/plants'
 import Authenticated from './components/authenticated'
 import Login from './components/login'
 import './index.scss'
 
 const store = configureStore({
   reducer: {
+    plants: plantsReducer,
     user: userReducer,
     stock: stockReducer,
     prices: pricesReducer,

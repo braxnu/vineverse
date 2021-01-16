@@ -29,6 +29,7 @@
     "cookie-parser": "^1.4.5",
     "dayjs": "^1.10.3",
     "express": "^4.17.1",
+    "format-number": "^3.0.0",
     "mongoose": "^5.11.11",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

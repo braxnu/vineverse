@@ -1,5 +1,26 @@
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+input,
+button {
+  font-size: 11px;
+}
+
 .amount {
   text-align: right;
+}
+
+button,
+.quantity {
+  margin: 0;
+  border: 1px solid rgba(0,0,0,.3);
+}
+
+.quantity {
+  text-align: right;
+  width: 50px;
 }
 
 td {

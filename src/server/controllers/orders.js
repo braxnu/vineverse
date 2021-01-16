@@ -167,7 +167,6 @@ exports.buy = async (req, res) => {
 
 exports.create = async (req, res) => {
   const { side, quantity, price, stockId } = req.body
-  console.log({ side, stockId, quantity, price })
   const session = await UserModel.db.startSession()
 
   await session.startTransaction()

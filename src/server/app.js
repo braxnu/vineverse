@@ -8,8 +8,11 @@ const api = require('./routes/api')
 const auth = require('./routes/auth')
 const config = require('../../config')
 const mongoose = require('mongoose')
-const ProductModel = require('./models/product')
 const seed = require('./seed')
+const { Types: { ObjectId } } = require('mongoose')
+
+global.ObjectId = ObjectId
+global.cl = console.log
 
 require('./models')
 

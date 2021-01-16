@@ -1,10 +1,10 @@
 import React from 'react'
 import Stock from './stock'
 import Balance from './Balance'
-import Prices from './Prices'
 import Username from './Username'
 import Menu from './Menu'
 import Orders from './orders'
+import PlantsCache from './plants-cache'
 
 const items = [
   {display: 'Strona główna', url: '/'},
@@ -15,7 +15,6 @@ const App = () => {
   return (
     <div className='App'>
       <Menu screenSize='desktop' items={items}/>
-      <p>OK</p>
       <Username />
       <Balance />
       <Stock />
@@ -24,6 +23,8 @@ const App = () => {
         <Orders side="buy" />
         <Orders side="sell" />
       </div>
+
+      <PlantsCache />
     </div>
   )
 }
