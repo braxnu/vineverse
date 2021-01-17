@@ -1,17 +1,37 @@
+const { Types: { ObjectId } } = require('mongoose')
+const dayjs = require('dayjs')
 const StockModel = require('../models/stock')
 const ProductModel = require('../models/product')
 const PlantModel = require('../models/plant')
 const FarmModel = require('../models/farm')
-const { Types: { ObjectId } } = require('mongoose')
+
+const plantMap = {}
+
+const getPlantObj = async plantId => {
+  if (!plantMap[plantId]) {
+    plantMap[plantId] = (
+      await PlantModel.findById(plantId).exec()
+    ).toObject()
+  }
+
+  return plantMap[plantId]
+}
+
+const isRipe = date => dayjs().diff(date, 'minute') > 5
 
 exports.getList = async (req, res) => {
-  res.send(
-    (
-      await FarmModel.find({
-        ownerId: req.user.id,
-      }).exec()
-    ).map(d => d.toObject())
-  )
+  const list = (
+    await FarmModel.find({
+      ownerId: req.user.id,
+    }).exec()
+  ).map(d => d.toObject())
+
+  for (let i = 0; i < list.length; i++) {
+    list[i].plant = await getPlantObj(list[i].plantId)
+    list[i].isRipe = isRipe(list[i].createdDate)
+  }
+
+  res.send(list)
 }
 
 exports.create = async (req, res) => {
@@ -48,6 +68,49 @@ exports.create = async (req, res) => {
   })
 
   await farm.save()
+
+  await session.commitTransaction()
+  session.endSession()
+  res.send('ok')
+}
+
+exports.harvest = async (req, res) => {
+  const { farmId, cropIndex } = req.body
+  const session = await StockModel.db.startSession()
+
+  await session.startTransaction()
+
+  const farm = await FarmModel.findById(farmId).exec()
+  const plant = await PlantModel.findById(farm.plantId).exec()
+  const crop = plant.crops[cropIndex]
+  const product = await ProductModel.findById(crop.productId).exec()
+  const quantity = Math.ceil(crop.ratio * farm.quantity)
+
+  let stock = await StockModel.findOne({
+    ownerId: req.user.id,
+    product,
+  }).exec()
+
+  if (!stock) {
+    stock = new StockModel({
+      ownerId: req.user.id,
+      product,
+      quantity: 0,
+    })
+
+    await stock.save()
+  }
+
+  await StockModel.findByIdAndUpdate(
+    stock.id,
+    {
+      $inc: {
+        quantity,
+      },
+    }
+  ).exec()
+
+  await farm.remove()
 
   await session.commitTransaction()
   session.endSession()

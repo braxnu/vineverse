@@ -124,10 +124,20 @@ exports.buy = async (req, res) => {
     _id: ObjectId(b.orderId),
   }).exec()
 
-  const stock = await StockModel.findOne({
+  let stock = await StockModel.findOne({
     ownerId: req.user.id,
     product: order.product,
   }).exec()
+
+  if (!stock) {
+    stock = new StockModel({
+      ownerId: req.user.id,
+      product: order.product,
+      quantity: 0,
+    })
+
+    await stock.save()
+  }
 
   const amount = b.quantity * order.price
 

@@ -53,13 +53,18 @@ const seed = async () => {
       ['Gruszka', 120],
       ['Sadzonka gruszy', 2],
     ]],
-    // ['Sadzonka jabłoni', 'Sadzonka jabłoni',],
-    // ['Gruszka', 'Sadzonka gruszy',],
-    // ['Sadzonka gruszy', 'Sadzonka gruszy',],
-    // ['Marchew', 'Nasiona marchwi',],
-    // ['Chmiel', 'Nasiona chmielu',],
-    // ['Banan', 'Sadzonka bananowca',],
-    // ['Sadzonka bananowca', 'Sadzonka bananowca',],
+    ['Marchew', 'Nasiona marchwi', [
+      ['Marchew', 50],
+      ['Nasiona marchwi', 50],
+    ]],
+    ['Chmiel', 'Nasiona chmielu', [
+      ['Chmiel', 10],
+      ['Nasiona chmielu', 10],
+    ]],
+    ['Plantacja bananowca', 'Sadzonka bananowca', [
+      ['Banan', 40],
+      ['Sadzonka bananowca', 2],
+    ]],
     // ['Pszenica', 'Pszenica',],
     // ['Ryż', 'Ryż',],
     // ['Awokado', 'Pestka awokado',],
@@ -82,8 +87,6 @@ const seed = async () => {
       })),
     }
 
-    // cl(plant)
-
     await PlantModel.findOneAndUpdate(
       { name },
       { $set: plant },
@@ -95,21 +98,21 @@ const seed = async () => {
 
   await StockModel.deleteMany()
 
-  for (let i = 0; i < users.length; i++) {
-    for (let j = 0; j < products.length; j++) {
-      const stock = new StockModel({
-        ownerId: users[i].id,
-        product: products[j],
-        quantity: Math.floor(Math.random() * 100) * 10 || 10,
-      })
+  // for (let i = 0; i < users.length; i++) {
+  //   for (let j = 0; j < products.length; j++) {
+  //     const stock = new StockModel({
+  //       ownerId: users[i].id,
+  //       product: products[j],
+  //       quantity: Math.floor(Math.random() * 100) * 10 || 10,
+  //     })
 
-      await stock.save()
-    }
-  }
+  //     await stock.save()
+  //   }
+  // }
 
   await OrderModel.deleteMany()
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1000; i++) {
     const order = new OrderModel({
       createdDate: new Date(),
       ownerId: rand(users).id,
