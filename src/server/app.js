@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const app = express()
 const PORT = 3000
 
+require('./models')
+
 const api = require('./routes/api')
 
 app.use('/', express.static('build'))
