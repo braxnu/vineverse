@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a button 1`] = `"<div class=\\"mobile-nav\\"><a href=\\"/adin\\"><div>Adin</div></a><a href=\\"/dwa\\"><div>Dwa</div></a><a href=\\"/adin\\"><div>Adin2</div></a><a href=\\"/dwa\\"><div>Dwa2</div></a><a href=\\"/adin\\"><div>Adin3</div></a><a href=\\"/dwa\\"><div>Dwa3</div></a><a href=\\"/adin\\"><div>Adin4</div></a><a href=\\"/dwa\\"><div>Dwa4</div></a></div>"`;

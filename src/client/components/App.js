@@ -17,7 +17,7 @@ const App = () => {
       <p>OK</p>
       <Username />
       <Balance />
-      <Stock />
+      <Stock value={10} />
       <Prices />
     </div>
   )
