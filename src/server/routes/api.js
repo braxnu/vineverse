@@ -1,13 +1,22 @@
 const express = require('express')
-
 const router = express.Router()
 
-const apiController = require('../controllers/apiController')
+router.get('/me', (req, res) => {
+  res.send({ balance: 1000, username: 'Zenon' })
+})
 
-router.get('/me', apiController.me)
+router.get('/stock', (req, res) => {
+  res.send([
+    { name: 'Marchew', quantity: 200 },
+    { name: 'Pszenica', quantity: 500 },
+  ])
+})
 
-router.get('/stock', apiController.stock)
-
-router.get('/prices', apiController.prices)
+router.get('/prices', (req, res) => {
+  res.send([
+    { name: 'Marchew', price: 20 },
+    { name: 'Pszenica', price: 50 }
+  ])
+})
 
 module.exports = router
