@@ -1,4 +1,9 @@
 const path = require('path')
+const isCi = require('is-ci')
+
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = isCi ? 'production' : 'development'
+}
 
 module.exports = {
   entry: './src/client/index.js',
@@ -6,7 +11,8 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV,
+  devtool: isCi ? false : 'source-map',
   module: {
     rules: [
       {

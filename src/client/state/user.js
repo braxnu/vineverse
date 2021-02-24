@@ -25,6 +25,12 @@ const userSlice = createSlice({
         username: payload.username,
       }
     },
+    logout(state) {
+      return {
+        ...state,
+        username: '',
+      }
+    },
   },
   extraReducers: {
     [fetchBalance.fulfilled]: (state, {payload}) => {
@@ -38,6 +44,7 @@ const userSlice = createSlice({
 
 export const {
   login,
+  logout,
 } = userSlice.actions
 
 export default userSlice.reducer
