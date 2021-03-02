@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import Register from './register'
+import api from '../api'
 
 const Login = ({ dispatchLogin }) => {
   const [username, setUsername] = useState('')
@@ -25,15 +25,12 @@ const Login = ({ dispatchLogin }) => {
 
         <button
           onClick={() => {
-            axios.post('/login/local', {
+            api.me.loginLocal({
               username,
               password,
             })
-              .then(({data}) => {
+              .then(data => {
                 dispatchLogin(data.username)
-              })
-              .catch(err => {
-                console.log('login catch', {err})
               })
           }}
         >
