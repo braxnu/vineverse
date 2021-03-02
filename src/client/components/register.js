@@ -6,7 +6,7 @@ const Register = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const [isCorreect, setCorrect] = useState(false)
+  const [isCorrect, setCorrect] = useState(false)
 
   useEffect(() => {
     setCorrect(
@@ -43,7 +43,7 @@ const Register = () => {
       />
 
       <button
-        disabled={!isCorreect}
+        disabled={!isCorrect}
         onClick={() => {
           axios.post('/register', {
             username,
