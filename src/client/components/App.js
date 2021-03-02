@@ -14,7 +14,6 @@ const App = () => {
   return (
     <div className='App'>
       <Menu screenSize='desktop' items={items}/>
-      <p>OK</p>
       <Username />
       <Balance />
       <Stock />

@@ -6,3 +6,5 @@ package-lock.json
 
 /build/bundle.js
 /config.js
+build/bundle.js.LICENSE.txt
+build/bundle.js.map

@@ -1,8 +1,10 @@
 import 'regenerator-runtime/runtime.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
 import { configureStore } from '@reduxjs/toolkit'
+import App from './components/App'
+import Auth from './components/auth'
+import Login from './components/Login'
 import { Provider } from 'react-redux'
 import userReducer from './state/user'
 import stockReducer from './state/stock'
@@ -18,7 +20,9 @@ const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Auth NotLoggedInComponent={Login}>
+      <App />
+    </Auth>
   </Provider>,
   document.getElementById('app')
 )
