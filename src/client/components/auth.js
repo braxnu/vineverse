@@ -10,7 +10,6 @@ export const Auth = ({ isLoggedIn, children, NotLoggedInComponent, dispatchLogin
   useEffect(() => {
     api.me.get()
       .then(data => {
-        console.log('THEN', {data})
         setLoading(false)
         dispatchLogin(data.username)
       })
@@ -18,8 +17,6 @@ export const Auth = ({ isLoggedIn, children, NotLoggedInComponent, dispatchLogin
         setLoading(false)
       })
   }, [])
-
-  console.log('render', { isLoading, isLoggedIn})
 
   if (isLoading) {
     return 'Loading...'

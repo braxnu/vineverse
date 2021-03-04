@@ -74,7 +74,7 @@ describe('when user is authenticated', () => {
     wrapper = mount(
       <Auth
         NotLoggedInComponent={FakeNotLoggedIn}
-        isLoggedIn={false}
+        isLoggedIn
         dispatchLogin={fakeDispatchLogin}
       >
         <FakeChildren />
@@ -85,9 +85,7 @@ describe('when user is authenticated', () => {
     wrapper.update()
   })
 
-  it.only('renders the children', () => {
-    wrapper.update()
-    console.log('TEST', wrapper.html())
+  it('renders the children', async () => {
     expect(wrapper.find(FakeChildren).exists()).toBe(true)
   })
 })
