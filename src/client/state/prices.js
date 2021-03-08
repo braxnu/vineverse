@@ -1,15 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import api from '../api'
 
 const initialState = []
 
 export const fetchPrices = createAsyncThunk(
   'stock/fetchPrices',
-  async () => {
-    const { data } = await axios.get('/api/prices')
-
-    return data
-  }
+  api.prices.get
 )
 
 const pricesSlice = createSlice({
