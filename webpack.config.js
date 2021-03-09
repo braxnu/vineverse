@@ -16,13 +16,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         use: {
           loader: 'babel-loader',
         }
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: [
           {
             loader: 'style-loader',
@@ -37,5 +37,8 @@ module.exports = {
         ],
       },
     ]
-  }
+  },
+  resolve: {
+    extensions: ['.mjs', '.ts', '.tsx', '.js', '.jsx', '.json'],
+  },
 }

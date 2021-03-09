@@ -2,23 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { login } from '../state/user'
-import axios from 'axios'
+import api from '../api'
 
-const Auth = ({ isLoggedIn, children, NotLoggedInComponent, dispatchLogin }) => {
+export const Auth = ({ isLoggedIn, children, NotLoggedInComponent, dispatchLogin }) => {
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('/api/me')
-      .then(({data}) => {
+    api.me.get()
+      .then(data => {
         setLoading(false)
         dispatchLogin(data.username)
       })
-      .catch(err => {
+      .catch(() => {
         setLoading(false)
-
-        if (err?.response?.status !== 401) {
-          console.log('login catch', { err })
-        }
       })
   }, [])
 

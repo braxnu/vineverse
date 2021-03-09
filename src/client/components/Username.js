@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { logout } from '../state/user'
 import './Username.css'
+import api from '../api'
 
 export const Username = ({ username, dispatchLogout }) => (
   <div className="Username">
     Zalogowany Użytkownik: {username}
     <button
       onClick={() => {
-        axios.post('/logout')
-          .then(dispatchLogout)
+        api.me.logout().then(dispatchLogout)
       }}
     >Logout</button>
   </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // import PropTypes from 'prop-types'
-import axios from 'axios'
+import api from '../api'
 
 const Register = () => {
   const [username, setUsername] = useState('')
@@ -45,13 +45,10 @@ const Register = () => {
       <button
         disabled={!isCorrect}
         onClick={() => {
-          axios.post('/register', {
+          api.me.register({
             username,
             password,
           })
-            .then(({data}) => {
-              console.log({data})
-            })
             .catch(err => {
               setCorrect(false)
               console.log('login catch', {err})
