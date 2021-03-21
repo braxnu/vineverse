@@ -10,7 +10,7 @@ const tableStyle = {
 
 class Prices extends Component {
   componentDidMount() {
-    this.props.fetchPrices()
+    this.props.dispatchFetchPrices()
   }
 
   render() {
@@ -47,6 +47,6 @@ export default connect(
     prices: state.prices,
   }),
   dispatch => ({
-    fetchPrices: () => dispatch(fetchPrices()),
+    dispatchFetchPrices: () => dispatch(fetchPrices()),
   })
 )(Prices)
